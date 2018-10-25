@@ -49,7 +49,7 @@ public class ShibControllerTest {
 		// set up
 		String shipIp = "10.10.0.10";
 		Properties properties = new Properties();
-		properties.put(PropertiesHolder.SHIB_IP_CONF, shipIp);
+		properties.put(PropertiesHolder.SERVICE_PROVIDER_MACHINE_IP_CONF, shipIp);
 		PropertiesHolder.setProperties(properties);
 		
 		String assertionUrl = "http://" + ShibController.DEFAULT_DOMAIN_ASSERTION_URL;
@@ -81,7 +81,7 @@ public class ShibControllerTest {
 		// set up		
 		String dashboardUrl = "http://10.10.0.10";
 		Properties properties = new Properties();
-		properties.put(PropertiesHolder.DASHBOARD_URL_CONF, dashboardUrl);
+		properties.put(PropertiesHolder.FOGBOW_GUI_URL_CONF, dashboardUrl);
 		PropertiesHolder.setProperties(properties);
 		
 		String rasTokenEncrypted = "rasTokenEncrypted";
@@ -107,7 +107,7 @@ public class ShibControllerTest {
 		// set up	
 		Properties properties = new Properties();
 		String shibIp = "10.10.10.10";
-		properties.put(PropertiesHolder.SHIB_IP_CONF, shibIp);
+		properties.put(PropertiesHolder.SERVICE_PROVIDER_MACHINE_IP_CONF, shibIp);
 		PropertiesHolder.setProperties(properties);
 		
 		String urlStr = "http://%s/someshing";

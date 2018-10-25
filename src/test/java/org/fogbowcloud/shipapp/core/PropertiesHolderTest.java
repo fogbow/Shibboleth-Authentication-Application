@@ -21,8 +21,8 @@ public class PropertiesHolderTest {
 		PropertiesHolder.init(PROPERTIES_CONF_PATH);
 
 		// verify 		
-		Assert.assertEquals(TestHolder.SHIB_IP, PropertiesHolder.getShibIp());
-		Assert.assertEquals(TestHolder.DASHBOARD_URL, PropertiesHolder.getDashboardUrl());
+		Assert.assertEquals(TestHolder.SERVICE_PROVIDER_MACHINE_IP, PropertiesHolder.getShibIp());
+		Assert.assertEquals(TestHolder.FOGBOW_GUI_URL, PropertiesHolder.getDashboardUrl());
 		Assert.assertEquals(TestHolder.SHIB_PRIVATE_KEY_PATH, PropertiesHolder.getShibPrivateKey());
 		Assert.assertEquals(TestHolder.RAS_PUBLIC_KEY_PATH, PropertiesHolder.getRasPublicKey());
 	}

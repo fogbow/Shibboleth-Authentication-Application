@@ -9,13 +9,13 @@ import javax.xml.bind.PropertyException;
 
 public class PropertiesHolder {
 
-	protected static final int DEFAULT_HTTP_PORT = 8000;
+	protected static final int DEFAULT_HTTP_PORT = 8000;	
 	
-	public static final String DASHBOARD_URL_CONF = "dashboard_url";
+	public static final String FOGBOW_GUI_URL_CONF = "fogbow_gui_url";
 	public static final String RAS_PUBLIC_KEY_PATH_CONF = "ras_public_key_path";
 	public static final String SHIP_PRIVATE_KEY_PATH_CONF = "ship_private_key_path";
 	private static final String SHIB_HTTP_PORT_CONF = "shib_http_port";
-	public static final String SHIB_IP_CONF = "shib_ip";
+	public static final String SERVICE_PROVIDER_MACHINE_IP_CONF = "service_provider_machine_ip";
 	
 	public static Properties properties;
 	
@@ -58,7 +58,7 @@ public class PropertiesHolder {
 	}
 	
 	public static String getDashboardUrl() {
-		return properties.getProperty(DASHBOARD_URL_CONF);
+		return properties.getProperty(FOGBOW_GUI_URL_CONF);
 	}
 	
 	public static String getRasPublicKey() {
@@ -70,7 +70,7 @@ public class PropertiesHolder {
 	}
 	
 	public static String getShibIp() {
-		return properties.getProperty(SHIB_IP_CONF);
+		return properties.getProperty(SERVICE_PROVIDER_MACHINE_IP_CONF);
 	}	
 	
 }
