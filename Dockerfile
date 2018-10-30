@@ -30,6 +30,4 @@ RUN \
     (build_number=$(git rev-parse --short 'HEAD') && echo "build_number=$build_number" > build)
 
 RUN \
-  mvn dependency:sources
-
-CMD /bin/bash start-shib-app.sh > log.out && tail -f /dev/null
+  mvn install
