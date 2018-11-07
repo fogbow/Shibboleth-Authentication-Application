@@ -1,0 +1,13 @@
+---
+- hosts: internal-machine
+  vars:
+    fogbow_components: "/home/{{ lookup('config', 'DEFAULT_REMOTE_USER')}}/fogbow-components"
+    shib_auth_app_dir_name: shibboleth-authentication-application
+  tasks:
+    - name: Removing all services if applied
+      become: yes
+      file:
+        state: absent
+        path: "{{ item }}"
+      with_items:
+        - "{{ fogbow_components }}/{{ shib_auth_app_dir_name }}"

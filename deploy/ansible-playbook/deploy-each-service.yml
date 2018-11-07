@@ -1,0 +1,14 @@
+---
+- hosts: internal-machine
+  vars:
+    shib_auth_app_dir_name: shibboleth-authentication-application
+    fogbow_components: "/home/{{ lookup('config', 'DEFAULT_REMOTE_USER')}}/fogbow-components"
+    deploy_script_runner: sh deploy-script.sh
+  tasks:
+    - name: Deploying services in Internal Machine
+      shell: "{{ deploy_script_runner }}"
+      become: yes
+      args:
+        chdir: "{{ item }}"
+      with_items:
+        - "{{ fogbow_components }}/{{ shib_auth_app_dir_name }}"

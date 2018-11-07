@@ -1,0 +1,31 @@
+
+<EntityDescriptor entityID="https://$SERVICE_PROVIDER_DOMAIN$/shibboleth-sp2">
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+      <KeyDescriptor>
+        <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+          <ds:X509Data>
+            <ds:X509Certificate>
+INSIRA_AQUI_O_CONTEUDO_DO_ARQUIVO_DO_CERTIFICADO
+INSIRA_AQUI_O_CONTEUDO_DO_ARQUIVO_DO_CERTIFICADO
+INSIRA_AQUI_O_CONTEUDO_DO_ARQUIVO_DO_CERTIFICADO
+            </ds:X509Certificate>
+          </ds:X509Data>
+        </ds:KeyInfo>
+      </KeyDescriptor>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://$HOSTNAME/Shibboleth.sso/SAML2/POST" index="1"/>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://$HOSTNAME/Shibboleth.sso/SAML2/POST-SimpleSign" index="2"/>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://$HOSTNAME/Shibboleth.sso/SAML2/Artifact" index="3"/>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://$HOSTNAME/Shibboleth.sso/SAML2/ECP" index="4"/>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://$HOSTNAME/Shibboleth.sso/SAML/POST" index="5"/>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://$HOSTNAME/Shibboleth.sso/SAML/Artifact" index="6"/>
+    </SPSSODescriptor>
+    <Organization>
+      <OrganizationName xml:lang="en">Sigla - descricao instituicao</OrganizationName>
+      <OrganizationDisplayName xml:lang="en">Sigla - descricao instituicao</OrganizationDisplayName>
+      <OrganizationURL xml:lang="en">http://$DOMINIO_INST</OrganizationURL>
+    </Organization>
+   <ContactPerson contactType="technical">
+    <SurName>TI</SurName>
+    <EmailAddress>email@dominio</EmailAddress>
+   </ContactPerson>
+</EntityDescriptor>

@@ -1,0 +1,13 @@
+---
+- hosts: internal-machine
+  vars:
+    services_path: ../services
+    shib_auth_app_dir_name: shibboleth-authentication-application
+    fogbow_components: ~/fogbow-components/
+  tasks:
+    - name: Copying services to Internal-Machine
+      copy:
+        src: "{{ item }}"
+        dest: "{{ fogbow_components }}"
+      with_items:
+        - "{{ services_path }}/{{ shib_auth_app_dir_name }}"
