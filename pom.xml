@@ -52,6 +52,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>fogbow</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.restlet.jee</groupId>
 			<artifactId>org.restlet</artifactId>
 			<version>2.2.0</version>

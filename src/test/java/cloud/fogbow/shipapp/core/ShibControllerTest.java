@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import cloud.fogbow.common.util.RSAUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
 import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
-import cloud.fogbow.shipapp.utils.RSAUtils;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
@@ -149,7 +149,7 @@ public class ShibControllerTest {
 		// verify
 		String asPrivateKeyPath = getResourceFilePath(PRIVATE_KEY_SUFIX_PATH);
 		RSAPrivateKey asPrivateKey = this.shibController.getPrivateKey(asPrivateKeyPath);
-		String tokenDecrypted = RSAUtils.decrypt(tokenEncrypted, asPrivateKey);
+		String tokenDecrypted = RSAUtil.decrypt(tokenEncrypted, asPrivateKey);
 		Assert.assertEquals(key, tokenDecrypted);
 	}
 	
@@ -183,7 +183,7 @@ public class ShibControllerTest {
 		
 		// verify
 		this.publicKey = this.shibController.getPublicKey(asPublicKeyPath);
-		Assert.assertTrue(RSAUtils.verify(this.publicKey, key, keySigned));
+		Assert.assertTrue(RSAUtil.verify(this.publicKey, key, keySigned));
 	}
 	
 	// case test: success case
@@ -197,7 +197,7 @@ public class ShibControllerTest {
 		String keyEncrypted = this.shibController.encrypAESAsToken(asTokenExpected, aesKey);
 		
 		// verify 
-		String asToken = RSAUtils.decryptAES(aesKey.getBytes(ShibController.UTF_8), keyEncrypted);
+		String asToken = RSAUtil.decryptAES(aesKey.getBytes(ShibController.UTF_8), keyEncrypted);
 		Assert.assertEquals(asTokenExpected, asToken);
 	}
 	
