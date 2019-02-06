@@ -29,7 +29,7 @@ public class TestHolder {
 
 	// properties
 	public static final String FOGBOW_GUI_URL = "http://localhost";
-	public static final String RAS_PUBLIC_KEY_PATH = "/path";
+	public static final String AS_PUBLIC_KEY_PATH = "/path";
 	public static final String SHIB_PRIVATE_KEY_PATH = "/path";
 	public static final int SHIB_HTTP_PORT = 9000;
 	public static final String SERVICE_PROVIDER_MACHINE_IP = "10.10.10.10";

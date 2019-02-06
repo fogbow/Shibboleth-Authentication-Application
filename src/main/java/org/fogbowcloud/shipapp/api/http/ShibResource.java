@@ -23,13 +23,13 @@ public class ShibResource extends ServerResource {
 		
 		ShibController shibController = new ShibController();
 		
-		String rasToken = shibController.createToken(assertionUrl);
+		String asToken = shibController.createToken(assertionUrl);
 		String aesKey = shibController.createAESkey();
-		String rasTokenEncryptedAes = shibController.encrypAESRasToken(rasToken, aesKey);
+		String asTokenEncryptedAes = shibController.encrypAESAsToken(asToken, aesKey);
 		String keyEncrypted = shibController.encrypRSAKey(aesKey);
 		String keySigned = shibController.signKey(aesKey);
 		
-		String targetURL = shibController.createTargetUrl(rasTokenEncryptedAes, keyEncrypted, keySigned);		
+		String targetURL = shibController.createTargetUrl(asTokenEncryptedAes, keyEncrypted, keySigned);
 		LOGGER.info(String.format("Request(%s) - Redirecting to: %s", requestIdentifier, targetURL));
 		getResponse().redirectPermanent(targetURL);
 		

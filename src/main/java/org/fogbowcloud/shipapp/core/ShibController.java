@@ -22,7 +22,7 @@ public class ShibController {
 	protected static final String TOKEN_URL_PARAMETER = "token";
 	
 	protected static final String DEFAULT_DOMAIN_ASSERTION_URL = "localhost";
-	public static final String SHIB_RAS_TOKEN_STRING_SEPARATOR = "!#!";
+	public static final String SHIB_AS_TOKEN_STRING_SEPARATOR = "!#!";
 
 	public String createToken(String assertionUrl) throws Exception {
 		String assertionResponse = getAssertionResponse(assertionUrl);		
@@ -36,7 +36,7 @@ public class ShibController {
 		return shibToken.generateTokenStr();
 	}
 
-	// TODO understand better about this assertion url because this one will be used by RAS
+	// TODO understand better about this assertion url because this one will be used by AS
 	// TODO adding shib ip when the assertion url is a localhost domain
 	protected String normalizeAssertionUrl(String assertionUrl) {
 		String shibIp = PropertiesHolder.getShibIp();
@@ -74,19 +74,19 @@ public class ShibController {
 	
 	public String encrypRSAKey(String key) throws Exception {
 		try {
-			String rasPublicKeyPath = PropertiesHolder.getRasPublicKey();
-			RSAPublicKey publicKey = getPublicKey(rasPublicKeyPath);
+			String asPublicKeyPath = PropertiesHolder.getAsPublicKey();
+			RSAPublicKey publicKey = getPublicKey(asPublicKeyPath);
 			return RSAUtils.encrypt(key, publicKey);
 		} catch (Exception e) {
-			String errorMsg = "Is not possible encryp(RAS) the message.";
+			String errorMsg = "Is not possible encryp(RSA) the message.";
 			LOGGER.error(errorMsg, e);
 			throw new Exception(errorMsg);
 		}		
 	}
 	
-	public String encrypAESRasToken(String rasToken, String aesKey) throws Exception {
+	public String encrypAESAsToken(String asToken, String aesKey) throws Exception {
 		try {
-			return RSAUtils.encryptAES(aesKey.getBytes(UTF_8), rasToken);
+			return RSAUtils.encryptAES(aesKey.getBytes(UTF_8), asToken);
 		} catch (Exception e) {
 			String errorMsg = "Is not possible encryp(AES) the message.";
 			LOGGER.error(errorMsg, e);
@@ -110,10 +110,10 @@ public class ShibController {
 		}		
 	}	
 
-	public String createTargetUrl(String rasTokenEncrypted, String keyEncrypted, String keySigned) throws URISyntaxException {
+	public String createTargetUrl(String asTokenEncrypted, String keyEncrypted, String keySigned) throws URISyntaxException {
 		String urlDashboard = PropertiesHolder.getDashboardUrl();
 		URIBuilder uriBuilder = new URIBuilder(urlDashboard);
-		uriBuilder.addParameter(TOKEN_URL_PARAMETER, rasTokenEncrypted);
+		uriBuilder.addParameter(TOKEN_URL_PARAMETER, asTokenEncrypted);
 		uriBuilder.addParameter(KEY_URL_PARAMETER, keyEncrypted);
 		uriBuilder.addParameter(KEY_SIGNATURE_URL_PARAMETER, keySigned);
 		return uriBuilder.toString();

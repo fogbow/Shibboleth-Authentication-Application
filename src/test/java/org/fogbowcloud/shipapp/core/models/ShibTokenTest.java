@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.fogbowcloud.shipapp.core.ShibController;
-import org.fogbowcloud.shipapp.core.models.ShibToken;
 import org.fogbowcloud.shipapp.core.saml.SAMLAssertionHolder;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -170,7 +169,7 @@ public class ShibTokenTest {
 				userName,
 				samlAttributeStr};
 
-		return StringUtils.join(attributes, ShibController.SHIB_RAS_TOKEN_STRING_SEPARATOR);
+		return StringUtils.join(attributes, ShibController.SHIB_AS_TOKEN_STRING_SEPARATOR);
 	}
 	
 }

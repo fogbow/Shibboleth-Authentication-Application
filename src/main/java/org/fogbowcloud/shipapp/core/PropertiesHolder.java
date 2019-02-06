@@ -12,7 +12,7 @@ public class PropertiesHolder {
 	protected static final int DEFAULT_HTTP_PORT = 8000;	
 	
 	public static final String FOGBOW_GUI_URL_CONF = "fogbow_gui_url";
-	public static final String RAS_PUBLIC_KEY_PATH_CONF = "ras_public_key_path";
+	public static final String AS_PUBLIC_KEY_PATH_CONF = "as_public_key_path";
 	public static final String SHIP_PRIVATE_KEY_PATH_CONF = "ship_private_key_path";
 	private static final String SHIB_HTTP_PORT_CONF = "shib_http_port";
 	public static final String SERVICE_PROVIDER_MACHINE_IP_CONF = "service_provider_machine_ip";
@@ -38,12 +38,12 @@ public class PropertiesHolder {
 			throw new PropertyException("Ship App private key not especified in the properties.");
 		}
 		
-		if (getRasPublicKey() == null || getRasPublicKey().isEmpty()) {
-			throw new PropertyException("RAS public key not especified in the properties.");
+		if (getAsPublicKey() == null || getAsPublicKey().isEmpty()) {
+			throw new PropertyException("AS public key not especified in the properties.");
 		}
 		
 		if (getDashboardUrl() == null || getDashboardUrl().isEmpty()) {
-			throw new PropertyException("Dashboard RAS url not especified in the properties.");
+			throw new PropertyException("Dashboard AS url not especified in the properties.");
 		}
 		
 		if (getShibIp() == null || getShibIp().isEmpty()) {
@@ -61,8 +61,8 @@ public class PropertiesHolder {
 		return properties.getProperty(FOGBOW_GUI_URL_CONF);
 	}
 	
-	public static String getRasPublicKey() {
-		return properties.getProperty(RAS_PUBLIC_KEY_PATH_CONF);
+	public static String getAsPublicKey() {
+		return properties.getProperty(AS_PUBLIC_KEY_PATH_CONF);
 	}
 	
 	public static String getShibPrivateKey() {

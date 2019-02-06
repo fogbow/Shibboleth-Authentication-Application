@@ -24,7 +24,7 @@ public class PropertiesHolderTest {
 		Assert.assertEquals(TestHolder.SERVICE_PROVIDER_MACHINE_IP, PropertiesHolder.getShibIp());
 		Assert.assertEquals(TestHolder.FOGBOW_GUI_URL, PropertiesHolder.getDashboardUrl());
 		Assert.assertEquals(TestHolder.SHIB_PRIVATE_KEY_PATH, PropertiesHolder.getShibPrivateKey());
-		Assert.assertEquals(TestHolder.RAS_PUBLIC_KEY_PATH, PropertiesHolder.getRasPublicKey());
+		Assert.assertEquals(TestHolder.AS_PUBLIC_KEY_PATH, PropertiesHolder.getAsPublicKey());
 	}
 	
 	// case test: get shib HTTP port in the properties

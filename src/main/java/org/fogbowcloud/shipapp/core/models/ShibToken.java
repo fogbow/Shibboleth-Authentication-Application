@@ -11,7 +11,7 @@ import org.json.JSONObject;
 public class ShibToken {
 
 	protected final static int MAXIMUM_TOKEN_STRING_SIZE = 1000;
-	private static final String SHIB_RAS_TOKEN_STRING_SEPARATOR = ShibController.SHIB_RAS_TOKEN_STRING_SEPARATOR;
+	private static final String SHIB_AS_TOKEN_STRING_SEPARATOR = ShibController.SHIB_AS_TOKEN_STRING_SEPARATOR;
 	
 	// The secret is the creation time
 	private String secret;
@@ -94,7 +94,7 @@ public class ShibToken {
 				this.userId, 
 				this.userName };
 
-		return StringUtils.join(mainAttributes, SHIB_RAS_TOKEN_STRING_SEPARATOR);
+		return StringUtils.join(mainAttributes, SHIB_AS_TOKEN_STRING_SEPARATOR);
  	}
 	
 	private String generateTokenStr(String mainShibTokenAttributes, String samlAttributes) {
@@ -102,7 +102,7 @@ public class ShibToken {
 				mainShibTokenAttributes, 
 				samlAttributes };
 		
-		return StringUtils.join(tokenStr, SHIB_RAS_TOKEN_STRING_SEPARATOR);
+		return StringUtils.join(tokenStr, SHIB_AS_TOKEN_STRING_SEPARATOR);
 	}
 	
 }
