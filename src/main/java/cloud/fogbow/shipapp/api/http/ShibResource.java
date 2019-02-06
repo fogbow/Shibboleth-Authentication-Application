@@ -3,6 +3,7 @@ package cloud.fogbow.shipapp.api.http;
 import java.util.Random;
 
 import cloud.fogbow.shipapp.core.ShibController;
+import cloud.fogbow.shipapp.core.constants.Messages;
 import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
 import org.apache.log4j.Logger;
 import org.restlet.engine.adapter.HttpRequest;
@@ -18,7 +19,7 @@ public class ShibResource extends ServerResource {
 		String requestIdentifier = getRequestIdentifier();
 		HttpRequest httpRequest = (HttpRequest) getRequest();
 		
-		LOGGER.info(String.format("Request(%s) - Starting new request.", requestIdentifier));		
+		LOGGER.info(String.format(Messages.Info.STARTING_REQUEST_S, requestIdentifier));
 		String assertionUrl = getAssertionUrl(httpRequest);
 		
 		ShibController shibController = new ShibController();
@@ -30,7 +31,7 @@ public class ShibResource extends ServerResource {
 		String keySigned = shibController.signKey(aesKey);
 		
 		String targetURL = shibController.createTargetUrl(asTokenEncryptedAes, keyEncrypted, keySigned);
-		LOGGER.info(String.format("Request(%s) - Redirecting to: %s", requestIdentifier, targetURL));
+		LOGGER.info(String.format(Messages.Info.REDIRECTING_REQUEST_S_TO_S, requestIdentifier, targetURL));
 		getResponse().redirectPermanent(targetURL);
 		
 		return new String();

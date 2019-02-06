@@ -8,7 +8,6 @@ import org.restlet.routing.Router;
 
 public class ShibApplication extends Application {
 
-	private HttpClientWrapper httpClientWrapper;
 	private DateUtils dateUtils;
 
 	public ShibApplication() {
@@ -22,10 +21,6 @@ public class ShibApplication extends Application {
 		return router;
 	}
 
-	public HttpClientWrapper getHttpClientWrapper() {
-		return this.httpClientWrapper;
-	}
-	
 	public DateUtils getDateUtils() {
 		return this.dateUtils;
 	}

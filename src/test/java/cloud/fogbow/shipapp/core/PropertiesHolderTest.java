@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.xml.bind.PropertyException;
 
+import cloud.fogbow.shipapp.core.constants.DefaultConfigurationConstants;
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -48,7 +49,7 @@ public class PropertiesHolderTest {
 		int shipHttpPort = PropertiesHolder.getShipHttpPort();
 		
 		// verify
-		Assert.assertEquals(PropertiesHolder.DEFAULT_HTTP_PORT, shipHttpPort);
+		Assert.assertEquals(DefaultConfigurationConstants.DEFAULT_HTTP_PORT, shipHttpPort);
 	}
 	
 	// TODO implements test to this methods: checkProperties

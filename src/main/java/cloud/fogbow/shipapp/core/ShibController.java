@@ -6,6 +6,7 @@ import java.security.interfaces.RSAPublicKey;
 import java.util.Map;
 
 import cloud.fogbow.common.util.RSAUtil;
+import cloud.fogbow.shipapp.core.constants.Messages;
 import cloud.fogbow.shipapp.core.models.ShibToken;
 import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
 import org.apache.http.client.utils.URIBuilder;
@@ -46,7 +47,7 @@ public class ShibController {
 
 	protected Map<String, String> getAssertionAttr(String assertionResponse) throws Exception {
 		if (assertionResponse == null) {
-			String errorMsg = "The assertionResponse is null.";
+			String errorMsg = Messages.Error.NULL_RESPONSE;
 			LOGGER.error(errorMsg);
 			throw new Exception(errorMsg);
 		}
@@ -60,7 +61,7 @@ public class ShibController {
 		try {
 			assertionResponse = SAMLAssertionHolder.getAssertionResponse(assertionUrl);
 		} catch (Exception e) {
-			String errorMsg = "Is not possible get assertions.";
+			String errorMsg = Messages.Error.UNABLE_TO_GET_ASSERTIONS;
 			LOGGER.error(errorMsg, e);
 			throw new Exception(errorMsg);
 		}
@@ -78,7 +79,7 @@ public class ShibController {
 			RSAPublicKey publicKey = getPublicKey(asPublicKeyPath);
 			return RSAUtil.encrypt(key, publicKey);
 		} catch (Exception e) {
-			String errorMsg = "Is not possible encryp(RSA) the message.";
+			String errorMsg = Messages.Error.UNABLE_TO_ENCRYPT_MESSAGE_WITH_RSA;
 			LOGGER.error(errorMsg, e);
 			throw new Exception(errorMsg);
 		}		
@@ -88,7 +89,7 @@ public class ShibController {
 		try {
 			return RSAUtil.encryptAES(aesKey.getBytes(UTF_8), asToken);
 		} catch (Exception e) {
-			String errorMsg = "Is not possible encryp(AES) the message.";
+			String errorMsg = Messages.Error.UNABLE_TO_ENCRYPT_MESSAGE_WITH_AES;
 			LOGGER.error(errorMsg, e);
 			throw new Exception(errorMsg);
 		}
@@ -104,7 +105,7 @@ public class ShibController {
 			RSAPrivateKey privateKey = getPrivateKey(shibPrivateKeyPath);
 			return RSAUtil.sign(privateKey, key);
 		} catch (Exception e) {
-			String errorMsg = "Is not possible sign the message.";
+			String errorMsg = Messages.Error.UNABLE_TO_SIGN_MESSAGE;
 			LOGGER.error(errorMsg, e);
 			throw new Exception(errorMsg);
 		}		
@@ -123,7 +124,7 @@ public class ShibController {
 		try {
 			return RSAUtil.getPublicKey(publicKeyPath.trim());
 		} catch (Exception e) {
-			LOGGER.error("There is not possible get public key.", e);	
+			LOGGER.error(Messages.Error.UNABLE_TO_GET_PUBLIC_KEY, e);
 		}
 		return null;
 	}
@@ -132,7 +133,7 @@ public class ShibController {
 		try {
 			return RSAUtil.getPrivateKey(privateKeyPath.trim());
 		} catch (Exception e) {
-			LOGGER.error("There is not possible get private key.", e);
+			LOGGER.error(Messages.Error.UNABLE_TO_GET_PRIVATE_KEY, e);
 		}
 		return null;
 	}

@@ -1,6 +1,9 @@
 package cloud.fogbow.shipapp;
 
+import cloud.fogbow.common.util.HomeDir;
 import cloud.fogbow.shipapp.core.PropertiesHolder;
+import cloud.fogbow.shipapp.core.constants.Messages;
+import cloud.fogbow.shipapp.core.constants.SystemConstants;
 import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
 import org.apache.log4j.Logger;
 import org.opensaml.xml.ConfigurationException;
@@ -13,7 +16,7 @@ public class Main {
 	private static final int EXIT = 1;
 	
 	public static void main(String[] args) {
-		String propertiesPath = args[0];
+		String propertiesPath = (args.length >= 1 ? args[0] : (HomeDir.getPath() + SystemConstants.CONF_FILE_NAME));
 		
 		initProperties(propertiesPath);		
 		initSAMLAssertion();		
@@ -28,18 +31,16 @@ public class Main {
 			http.getDefaultHost().attach(new ShibApplication());
 			http.start();
 		} catch (Exception e) {
-			String msgError = "Was not possible start HTTP server";
-			LOGGER.fatal(msgError, e);
+			LOGGER.fatal(Messages.Fatal.UNABLE_TO_START_HTTP_SERVER, e);
 			System.exit(EXIT);
 		}
 	}
 
-	private static void initProperties(String propertiePath) {
+	private static void initProperties(String propertiesPath) {
 		try {
-			PropertiesHolder.init(propertiePath);
+			PropertiesHolder.init(propertiesPath);
 		} catch (Exception e) {
-			String msgError = "Was not possible get properties";
-			LOGGER.fatal(msgError, e);
+			LOGGER.fatal(String.format(Messages.Fatal.UNABLE_TO_GET_PROPERTIES_S, propertiesPath), e);
 			System.exit(EXIT);
 		}
 	}
@@ -48,8 +49,7 @@ public class Main {
 		try {
 			SAMLAssertionHolder.init();
 		} catch (ConfigurationException e) {
-			String msgError = "Was not possible initialize SAMLAssertionHolder";
-			LOGGER.fatal(msgError, e);
+			LOGGER.fatal(Messages.Fatal.UNABLE_TO_INITIALIZE_SAML_ASSERTION_HOLDER, e);
 			System.exit(EXIT);
 		}
 	}

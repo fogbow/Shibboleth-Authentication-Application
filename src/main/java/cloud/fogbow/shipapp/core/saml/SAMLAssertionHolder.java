@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import cloud.fogbow.shipapp.core.constants.Messages;
 import cloud.fogbow.shipapp.utils.HttpClientWrapper;
 import cloud.fogbow.shipapp.utils.HttpResponseWrapper;
 import org.apache.commons.httpclient.HttpStatus;
@@ -49,7 +50,7 @@ public class SAMLAssertionHolder {
 		int statusCode = responseWrapper.getStatusLine().getStatusCode();
 		String content = responseWrapper.getContent();
 		if (statusCode != HttpStatus.SC_OK) {
-			String errorMsg = String.format("Status code(%s) inexpected. Error message: %s", statusCode, content);
+			String errorMsg = String.format(Messages.Error.UNEXPECTED_STATUS_CODE_D_S, statusCode, content);
 			LOGGER.error(errorMsg);
 			throw new Exception(errorMsg);
 		}
@@ -89,7 +90,7 @@ public class SAMLAssertionHolder {
         try {
         	tokenAttrs.put(IDENTITY_PROVIDER_ASSERTION_ATTRIBUTES, getIssuer(assertion));			
 		} catch (Exception e) {
-			LOGGER.warn("Is not possible get Saml's Issuer in the assertion", e);
+			LOGGER.warn(Messages.Warn.UNABLE_TO_RETRIEVE_ISSUER, e);
 		}
         
 		return tokenAttrs;
@@ -98,7 +99,7 @@ public class SAMLAssertionHolder {
 	protected static String getIssuer(Assertion assertion) throws Exception {		
         Issuer issuer = assertion.getIssuer();
         if (issuer == null) {
-			String errorMsg = "There is not issuer in the assertion Response.";
+			String errorMsg = Messages.Error.INEXISTENT_ISSUER;
 			LOGGER.error(errorMsg);
 			throw new Exception(errorMsg);
         }

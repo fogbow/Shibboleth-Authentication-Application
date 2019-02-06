@@ -1,5 +1,8 @@
 package cloud.fogbow.shipapp.core;
 
+import cloud.fogbow.shipapp.core.constants.DefaultConfigurationConstants;
+import cloud.fogbow.shipapp.core.constants.Messages;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,9 +11,6 @@ import java.util.Properties;
 import javax.xml.bind.PropertyException;
 
 public class PropertiesHolder {
-
-	protected static final int DEFAULT_HTTP_PORT = 8000;	
-	
 	public static final String FOGBOW_GUI_URL_CONF = "fogbow_gui_url";
 	public static final String AS_PUBLIC_KEY_PATH_CONF = "as_public_key_path";
 	public static final String SHIP_PRIVATE_KEY_PATH_CONF = "ship_private_key_path";
@@ -19,9 +19,9 @@ public class PropertiesHolder {
 	
 	public static Properties properties;
 	
-	public static void init(String propertiePath) throws IOException, PropertyException {
+	public static void init(String propertiesPath) throws IOException, PropertyException {
 		properties = new Properties();
-		File file = new File(propertiePath);
+		File file = new File(propertiesPath);
 		FileInputStream fileInputStream = new FileInputStream(file);
 		properties.load(fileInputStream);
 		
@@ -35,25 +35,25 @@ public class PropertiesHolder {
 
 	protected static void checkProperties(Properties properties) throws PropertyException {
 		if (getShibPrivateKey() == null || getShibPrivateKey().isEmpty()) {
-			throw new PropertyException("Ship App private key not especified in the properties.");
+			throw new PropertyException(Messages.Exception.INEXISTENT_PRIVATE_KEY_FILE);
 		}
 		
 		if (getAsPublicKey() == null || getAsPublicKey().isEmpty()) {
-			throw new PropertyException("AS public key not especified in the properties.");
+			throw new PropertyException(Messages.Exception.INEXISTENT_PUBLIC_KEY_FILE);
 		}
 		
 		if (getDashboardUrl() == null || getDashboardUrl().isEmpty()) {
-			throw new PropertyException("Dashboard AS url not especified in the properties.");
+			throw new PropertyException(Messages.Exception.INEXISTENT_CLIENT_URL);
 		}
 		
 		if (getShibIp() == null || getShibIp().isEmpty()) {
-			throw new PropertyException("Shib machine ip not especified in the properties.");
+			throw new PropertyException(Messages.Exception.INEXISTENT_SHIB_APP_IP);
 		}
 	}
 
 	public static int getShipHttpPort() {
 		String httpPortStr = properties.getProperty(SHIB_HTTP_PORT_CONF);
-		int port = httpPortStr == null ? DEFAULT_HTTP_PORT : Integer.parseInt(httpPortStr);
+		int port = httpPortStr == null ? DefaultConfigurationConstants.DEFAULT_HTTP_PORT : Integer.parseInt(httpPortStr);
 		return port;
 	}
 	

@@ -1,5 +1,6 @@
 package cloud.fogbow.shipapp.utils;
 
+import cloud.fogbow.shipapp.core.constants.Messages;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -31,7 +32,7 @@ public class HttpClientWrapper {
 			responseStr = EntityUtils.toString(response.getEntity(),
 					Charsets.UTF_8);
 		} catch (Exception e) {
-			LOGGER.error("Could not perform HTTP request.", e);
+			LOGGER.error(Messages.Error.UNABLE_TO_PERFORM_HTTP_REQUEST, e);
 			throw e;
 		} finally {
 			try {
