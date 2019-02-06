@@ -1,11 +1,11 @@
-package org.fogbowcloud.shipapp.core.models;
+package cloud.fogbow.shipapp.core.models;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import org.fogbowcloud.shipapp.core.ShibController;
-import org.fogbowcloud.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shipapp.core.ShibController;
+import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
 import org.json.JSONObject;
 
 public class ShibToken {

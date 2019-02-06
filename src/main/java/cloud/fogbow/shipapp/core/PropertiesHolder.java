@@ -1,4 +1,4 @@
-package org.fogbowcloud.shipapp.core;
+package cloud.fogbow.shipapp.core;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package org.fogbowcloud.shipapp.utils;
+package cloud.fogbow.shipapp.utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

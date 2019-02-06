@@ -1,15 +1,15 @@
-package org.fogbowcloud.shipapp.core;
+package cloud.fogbow.shipapp.core;
 
 import java.net.URISyntaxException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Map;
 
+import cloud.fogbow.shipapp.core.models.ShibToken;
+import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shipapp.utils.RSAUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.log4j.Logger;
-import org.fogbowcloud.shipapp.core.models.ShibToken;
-import org.fogbowcloud.shipapp.core.saml.SAMLAssertionHolder;
-import org.fogbowcloud.shipapp.utils.RSAUtils;
 
 public class ShibController {
 
@@ -27,12 +27,12 @@ public class ShibController {
 	public String createToken(String assertionUrl) throws Exception {
 		String assertionResponse = getAssertionResponse(assertionUrl);		
 		Map<String, String> assertionAttrs = getAssertionAttr(assertionResponse);		
-		String eduPersonPrincipalName = SAMLAssertionHolder.getEduPersonPrincipalName(assertionAttrs);		
+		String eduPersonPrincipalName = SAMLAssertionHolder.getEduPersonPrincipalName(assertionAttrs);
 		String commonName = SAMLAssertionHolder.getCommonName(assertionAttrs);		
 		String secret = createSecret();			
 		String assertionUrlNormalized = normalizeAssertionUrl(assertionUrl);		
 		
-		ShibToken shibToken = new ShibToken(secret, assertionUrlNormalized, eduPersonPrincipalName, commonName, assertionAttrs);		
+		ShibToken shibToken = new ShibToken(secret, assertionUrlNormalized, eduPersonPrincipalName, commonName, assertionAttrs);
 		return shibToken.generateTokenStr();
 	}
 

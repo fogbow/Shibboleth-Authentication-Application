@@ -1,8 +1,8 @@
-package org.fogbowcloud.shipapp;
+package cloud.fogbow.shipapp;
 
+import cloud.fogbow.shipapp.core.PropertiesHolder;
+import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
 import org.apache.log4j.Logger;
-import org.fogbowcloud.shipapp.core.PropertiesHolder;
-import org.fogbowcloud.shipapp.core.saml.SAMLAssertionHolder;
 import org.opensaml.xml.ConfigurationException;
 import org.restlet.Component;
 import org.restlet.data.Protocol;

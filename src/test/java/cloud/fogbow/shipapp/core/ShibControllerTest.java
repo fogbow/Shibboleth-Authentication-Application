@@ -1,4 +1,4 @@
-package org.fogbowcloud.shipapp.core;
+package cloud.fogbow.shipapp.core;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,8 +12,8 @@ import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
-import org.fogbowcloud.shipapp.core.saml.SAMLAssertionHolder;
-import org.fogbowcloud.shipapp.utils.RSAUtils;
+import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shipapp.utils.RSAUtils;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
