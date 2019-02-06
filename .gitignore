@@ -1,4 +1,17 @@
+### STS ###
+
 target/
 .settings/
 .classpath
 .project
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### LOGS ###
+*.log
+
+
