@@ -1,10 +1,10 @@
-package cloud.fogbow.shipapp;
+package cloud.fogbow.shibapp;
 
 import cloud.fogbow.common.util.HomeDir;
-import cloud.fogbow.shipapp.core.PropertiesHolder;
-import cloud.fogbow.shipapp.core.constants.Messages;
-import cloud.fogbow.shipapp.core.constants.SystemConstants;
-import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shibapp.core.PropertiesHolder;
+import cloud.fogbow.shibapp.constants.Messages;
+import cloud.fogbow.shibapp.constants.SystemConstants;
+import cloud.fogbow.shibapp.core.saml.SAMLAssertionHolder;
 import org.apache.log4j.Logger;
 import org.opensaml.xml.ConfigurationException;
 import org.restlet.Component;

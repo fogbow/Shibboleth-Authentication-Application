@@ -1,4 +1,4 @@
-package cloud.fogbow.shipapp.core;
+package cloud.fogbow.shibapp.core;
 
 import java.net.URISyntaxException;
 import java.security.interfaces.RSAPrivateKey;
@@ -6,9 +6,9 @@ import java.security.interfaces.RSAPublicKey;
 import java.util.Map;
 
 import cloud.fogbow.common.util.RSAUtil;
-import cloud.fogbow.shipapp.core.constants.Messages;
-import cloud.fogbow.shipapp.core.models.ShibToken;
-import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shibapp.constants.Messages;
+import cloud.fogbow.shibapp.core.models.ShibToken;
+import cloud.fogbow.shibapp.core.saml.SAMLAssertionHolder;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.log4j.Logger;
 

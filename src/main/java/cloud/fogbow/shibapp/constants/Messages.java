@@ -1,4 +1,4 @@
-package cloud.fogbow.shipapp.core.constants;
+package cloud.fogbow.shibapp.constants;
 
 public class Messages {
 

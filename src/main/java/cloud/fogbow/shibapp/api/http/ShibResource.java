@@ -1,10 +1,10 @@
-package cloud.fogbow.shipapp.api.http;
+package cloud.fogbow.shibapp.api.http;
 
 import java.util.Random;
 
-import cloud.fogbow.shipapp.core.ShibController;
-import cloud.fogbow.shipapp.core.constants.Messages;
-import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shibapp.core.ShibController;
+import cloud.fogbow.shibapp.constants.Messages;
+import cloud.fogbow.shibapp.core.saml.SAMLAssertionHolder;
 import org.apache.log4j.Logger;
 import org.restlet.engine.adapter.HttpRequest;
 import org.restlet.resource.Get;

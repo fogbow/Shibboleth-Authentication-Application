@@ -1,6 +1,6 @@
-package cloud.fogbow.shipapp.utils;
+package cloud.fogbow.shibapp.utils;
 
-import cloud.fogbow.shipapp.core.constants.Messages;
+import cloud.fogbow.shibapp.constants.Messages;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

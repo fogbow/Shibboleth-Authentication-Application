@@ -1,4 +1,4 @@
-package cloud.fogbow.shipapp.utils;
+package cloud.fogbow.shibapp.utils;
 
 import org.apache.http.StatusLine;
 

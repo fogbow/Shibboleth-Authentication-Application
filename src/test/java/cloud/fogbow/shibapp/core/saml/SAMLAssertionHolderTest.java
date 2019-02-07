@@ -1,4 +1,4 @@
-package cloud.fogbow.shipapp.core.saml;
+package cloud.fogbow.shibapp.core.saml;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -8,9 +8,9 @@ import java.util.Map;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.http.ProtocolVersion;
 import org.apache.http.message.BasicStatusLine;
-import cloud.fogbow.shipapp.core.TestHolder;
-import cloud.fogbow.shipapp.utils.HttpClientWrapper;
-import cloud.fogbow.shipapp.utils.HttpResponseWrapper;
+import cloud.fogbow.shibapp.core.TestHolder;
+import cloud.fogbow.shibapp.utils.HttpClientWrapper;
+import cloud.fogbow.shibapp.utils.HttpResponseWrapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

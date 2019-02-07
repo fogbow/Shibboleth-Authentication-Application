@@ -1,4 +1,4 @@
-package cloud.fogbow.shipapp.core;
+package cloud.fogbow.shibapp.core;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,9 +11,10 @@ import java.util.Map;
 import java.util.Properties;
 
 import cloud.fogbow.common.util.RSAUtil;
+import cloud.fogbow.shibapp.constants.ConfigurationPropertyKeys;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
-import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shibapp.core.saml.SAMLAssertionHolder;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
@@ -47,7 +48,7 @@ public class ShibControllerTest {
 		// set up
 		String shipIp = "10.10.0.10";
 		Properties properties = new Properties();
-		properties.put(PropertiesHolder.SERVICE_PROVIDER_MACHINE_IP_CONF, shipIp);
+		properties.put(ConfigurationPropertyKeys.SERVICE_PROVIDER_MACHINE_IP_CONF_KEY, shipIp);
 		PropertiesHolder.setProperties(properties);
 		
 		String assertionUrl = "http://" + ShibController.DEFAULT_DOMAIN_ASSERTION_URL;
@@ -79,7 +80,7 @@ public class ShibControllerTest {
 		// set up		
 		String dashboardUrl = "http://10.10.0.10";
 		Properties properties = new Properties();
-		properties.put(PropertiesHolder.FOGBOW_GUI_URL_CONF, dashboardUrl);
+		properties.put(ConfigurationPropertyKeys.FOGBOW_GUI_URL_CONF_KEY, dashboardUrl);
 		PropertiesHolder.setProperties(properties);
 		
 		String asTokenEncrypted = "asTokenEncrypted";
@@ -105,7 +106,7 @@ public class ShibControllerTest {
 		// set up	
 		Properties properties = new Properties();
 		String shibIp = "10.10.10.10";
-		properties.put(PropertiesHolder.SERVICE_PROVIDER_MACHINE_IP_CONF, shibIp);
+		properties.put(ConfigurationPropertyKeys.SERVICE_PROVIDER_MACHINE_IP_CONF_KEY, shibIp);
 		PropertiesHolder.setProperties(properties);
 		
 		String urlStr = "http://%s/someshing";
@@ -140,7 +141,7 @@ public class ShibControllerTest {
 		String key = "anything";
 		Properties properties = new Properties();
 		String asPublicKeyPath = getResourceFilePath(PUBLIC_KEY_SUFIX_PATH);
-		properties.put(PropertiesHolder.AS_PUBLIC_KEY_PATH_CONF, asPublicKeyPath);
+		properties.put(ConfigurationPropertyKeys.AS_PUBLIC_KEY_PATH_CONF_KEY, asPublicKeyPath);
 		PropertiesHolder.setProperties(properties);
 				
 		// exercise
@@ -159,7 +160,7 @@ public class ShibControllerTest {
 		// set up	
 		String key = "anything";
 		Properties properties = new Properties();
-		properties.put(PropertiesHolder.AS_PUBLIC_KEY_PATH_CONF, "");
+		properties.put(ConfigurationPropertyKeys.AS_PUBLIC_KEY_PATH_CONF_KEY, "");
 		PropertiesHolder.setProperties(properties);
 				
 		// exercise
@@ -174,8 +175,8 @@ public class ShibControllerTest {
 		Properties properties = new Properties();
 		String asPublicKeyPath = getResourceFilePath(PUBLIC_KEY_SUFIX_PATH);
 		String asPrivateKeyPath = getResourceFilePath(PRIVATE_KEY_SUFIX_PATH);
-		properties.put(PropertiesHolder.AS_PUBLIC_KEY_PATH_CONF, asPublicKeyPath);
-		properties.put(PropertiesHolder.SHIP_PRIVATE_KEY_PATH_CONF, asPrivateKeyPath);
+		properties.put(ConfigurationPropertyKeys.AS_PUBLIC_KEY_PATH_CONF_KEY, asPublicKeyPath);
+		properties.put(ConfigurationPropertyKeys.SHIP_PRIVATE_KEY_PATH_CONF_KEY, asPrivateKeyPath);
 		PropertiesHolder.setProperties(properties);		
 
 		// exercise

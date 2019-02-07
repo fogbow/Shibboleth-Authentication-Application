@@ -1,10 +1,10 @@
-package cloud.fogbow.shipapp.core;
+package cloud.fogbow.shibapp.core;
 
 import java.io.IOException;
 
 import javax.xml.bind.PropertyException;
 
-import cloud.fogbow.shipapp.core.constants.DefaultConfigurationConstants;
+import cloud.fogbow.shibapp.constants.ConfigurationPropertyDefaults;
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -49,7 +49,7 @@ public class PropertiesHolderTest {
 		int shipHttpPort = PropertiesHolder.getShipHttpPort();
 		
 		// verify
-		Assert.assertEquals(DefaultConfigurationConstants.DEFAULT_HTTP_PORT, shipHttpPort);
+		Assert.assertEquals(ConfigurationPropertyDefaults.DEFAULT_HTTP_PORT, shipHttpPort);
 	}
 	
 	// TODO implements test to this methods: checkProperties

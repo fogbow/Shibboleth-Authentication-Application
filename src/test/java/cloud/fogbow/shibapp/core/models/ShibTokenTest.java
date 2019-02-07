@@ -1,11 +1,11 @@
-package cloud.fogbow.shipapp.core.models;
+package cloud.fogbow.shibapp.core.models;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import cloud.fogbow.shipapp.core.ShibController;
-import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shibapp.core.ShibController;
+import cloud.fogbow.shibapp.core.saml.SAMLAssertionHolder;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.mockito.Mockito;

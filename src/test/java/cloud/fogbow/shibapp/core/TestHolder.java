@@ -1,11 +1,11 @@
-package cloud.fogbow.shipapp.core;
+package cloud.fogbow.shibapp.core;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import cloud.fogbow.shipapp.core.saml.SAMLAssertionHolder;
+import cloud.fogbow.shibapp.core.saml.SAMLAssertionHolder;
 
 public class TestHolder {
 

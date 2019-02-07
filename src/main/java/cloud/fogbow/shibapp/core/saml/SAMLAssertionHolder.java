@@ -1,4 +1,4 @@
-package cloud.fogbow.shipapp.core.saml;
+package cloud.fogbow.shibapp.core.saml;
 
 import java.io.StringReader;
 import java.util.Arrays;
@@ -9,9 +9,9 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import cloud.fogbow.shipapp.core.constants.Messages;
-import cloud.fogbow.shipapp.utils.HttpClientWrapper;
-import cloud.fogbow.shipapp.utils.HttpResponseWrapper;
+import cloud.fogbow.shibapp.constants.Messages;
+import cloud.fogbow.shibapp.utils.HttpClientWrapper;
+import cloud.fogbow.shibapp.utils.HttpResponseWrapper;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.log4j.Logger;
 import org.opensaml.DefaultBootstrap;
