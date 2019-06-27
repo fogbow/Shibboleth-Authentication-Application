@@ -5,7 +5,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Map;
 
-import cloud.fogbow.common.util.RSAUtil;
+import cloud.fogbow.common.util.CryptoUtil;
 import cloud.fogbow.shibapp.constants.Messages;
 import cloud.fogbow.shibapp.core.models.ShibToken;
 import cloud.fogbow.shibapp.core.saml.SAMLAssertionHolder;
@@ -77,7 +77,7 @@ public class ShibController {
 		try {
 			String asPublicKeyPath = PropertiesHolder.getAsPublicKey();
 			RSAPublicKey publicKey = getPublicKey(asPublicKeyPath);
-			return RSAUtil.encrypt(key, publicKey);
+			return CryptoUtil.encrypt(key, publicKey);
 		} catch (Exception e) {
 			String errorMsg = Messages.Error.UNABLE_TO_ENCRYPT_MESSAGE_WITH_RSA;
 			LOGGER.error(errorMsg, e);
@@ -87,7 +87,7 @@ public class ShibController {
 	
 	public String encrypAESAsToken(String asToken, String aesKey) throws Exception {
 		try {
-			return RSAUtil.encryptAES(aesKey.getBytes(UTF_8), asToken);
+			return CryptoUtil.encryptAES(aesKey.getBytes(UTF_8), asToken);
 		} catch (Exception e) {
 			String errorMsg = Messages.Error.UNABLE_TO_ENCRYPT_MESSAGE_WITH_AES;
 			LOGGER.error(errorMsg, e);
@@ -96,14 +96,14 @@ public class ShibController {
 	}
 	
 	public String createAESkey() {
-		return RSAUtil.generateAESKey();
+		return CryptoUtil.generateAESKey();
 	}
 	
 	public String signKey(String key) throws Exception {
 		try {
 			String shibPrivateKeyPath = PropertiesHolder.getShibPrivateKey();
 			RSAPrivateKey privateKey = getPrivateKey(shibPrivateKeyPath);
-			return RSAUtil.sign(privateKey, key);
+			return CryptoUtil.sign(privateKey, key);
 		} catch (Exception e) {
 			String errorMsg = Messages.Error.UNABLE_TO_SIGN_MESSAGE;
 			LOGGER.error(errorMsg, e);
@@ -122,7 +122,7 @@ public class ShibController {
 
 	protected RSAPublicKey getPublicKey(String publicKeyPath) {
 		try {
-			return RSAUtil.getPublicKey(publicKeyPath.trim());
+			return CryptoUtil.getPublicKey(publicKeyPath.trim());
 		} catch (Exception e) {
 			LOGGER.error(Messages.Error.UNABLE_TO_GET_PUBLIC_KEY, e);
 		}
@@ -131,7 +131,7 @@ public class ShibController {
 
 	protected RSAPrivateKey getPrivateKey(String privateKeyPath) {	
 		try {
-			return RSAUtil.getPrivateKey(privateKeyPath.trim());
+			return CryptoUtil.getPrivateKey(privateKeyPath.trim());
 		} catch (Exception e) {
 			LOGGER.error(Messages.Error.UNABLE_TO_GET_PRIVATE_KEY, e);
 		}
