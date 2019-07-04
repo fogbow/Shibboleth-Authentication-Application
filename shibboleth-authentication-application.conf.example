@@ -8,7 +8,7 @@ fogbow_gui_url=http://fogbow-gui.lsd.ufcg.edu.br
 ship_private_key_path=/certs/shi_app_private_key.pem
  
 ## Resource Allocation Service public key path
-ras_public_key_path=/certs/ras_public_key.pem
+as_public_key_path=/certs/ras_public_key.pem
 
 ## Service Provider(SP) machine(Apache + Shibboleth) ip
 service_provider_machine_ip=10.10.10.10
