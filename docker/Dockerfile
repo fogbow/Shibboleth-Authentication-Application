@@ -1,55 +1,63 @@
-FROM ubuntu:16.04
+# This Dockerfile belongs to the fogbow/apache-shibboleth-server
+# It is following RNP tutorial
+## https://wiki.rnp.br/pages/viewpage.action?pageId=69969868
 
-# Install.
+# In the RNP tutorial the Ubuntu 14:04 is required because da dependency 'libapache2-mod-php5'
+FROM ubuntu:14.04
+
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update -y && \
   apt-get upgrade -y && \
-  apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget maven && \
-  apt-get install -y net-tools iputils-ping openjdk-8-jdk tzdata && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get install -y byobu curl git htop man unzip vim nano wget && \
+  apt-get install -y net-tools iputils-ping && \
+  apt-get install -y apache2 && \ 
+  apt-get install -y libapache2-mod-php5 libapache2-mod-shib2 maven
 
-# Install apache/shibboleth dependencies
-RUN \
-  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  apt-get update -y && \
-  apt-get upgrade -y && \
-  apt-get -y install apache2 libapache2-mod-php libapache2-mod-shib2 ntp dbus
+# Avoid Poddle vulnerability
+RUN sed -i "s#SSLProtocol all#SSLProtocol All -SSLv2 -SSLv3#g" /etc/apache2/mods-available/ssl.conf
 
-# Apacha modules
-RUN a2enmod shib2
-RUN a2enmod ssl
-RUN a2enmod rewrite
-RUN a2enmod proxy
-RUN a2enmod proxy_http
-RUN a2enmod headers
+RUN rm -rf /var/www/index.html
+RUN rm -rf /etc/shibboleth/IQ-metadata.xml
 
-# Set environment variables.
-ENV HOME /root
+# Set the correct time 
+RUN apt-get install -y ntp ntpdate && \ 
+  service ntp restart
 
-# Define working directory.
-WORKDIR /root
+# Install Shibboleth Authentication Application
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
-# Installing Manager
-RUN \
-  git clone https://github.com/fogbow/shibboleth-authentication-application.git && \
-  (cd shibboleth-authentication-application && git checkout master)
+RUN apt-get -y install software-properties-common
+RUN add-apt-repository ppa:openjdk-r/ppa 
+RUN apt-get update 
+RUN apt-get install -y --no-install-recommends openjdk-8-jdk 
+RUN rm -rf /var/lib/apt/lists/* 
+RUN apt-get install -y git
 
-# Define working directory.
-WORKDIR /root/shibboleth-authentication-application
+RUN update-java-alternatives --set /usr/lib/jvm/java-1.8.0-openjdk-amd64
 
-RUN mkdir files
+WORKDIR /home/ubuntu/
+
+RUN git clone https://github.com/fogbow/common.git
+
+WORKDIR /home/ubuntu/common
+
+RUN mvn install -DskipTests
+
+WORKDIR /home/ubuntu/
+
+RUN git clone https://github.com/fogbow/shibboleth-authentication-application.git
+
+RUN mkdir /home/ubuntu/shared-folder
+
+WORKDIR /home/ubuntu/shibboleth-authentication-application
 
 # Generates the build number based on the commit checksum
 RUN \
     (build_number=$(git rev-parse --short 'HEAD') && echo "build_number=$build_number" > build)
 
-RUN mvn dependency:sources
-RUN mvn install -Dmaven.test.skip=true
+RUN mvn install -DskipTests
 
-RUN rm -rf /var/www/index.html
-RUN rm -rf /etc/shibboleth/IQ-metadata.xml
+EXPOSE 80 443
 
-RUN ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime
+CMD tail -f /dev/null
