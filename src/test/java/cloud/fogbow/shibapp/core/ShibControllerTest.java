@@ -176,7 +176,7 @@ public class ShibControllerTest {
 		String asPublicKeyPath = getResourceFilePath(PUBLIC_KEY_SUFIX_PATH);
 		String asPrivateKeyPath = getResourceFilePath(PRIVATE_KEY_SUFIX_PATH);
 		properties.put(ConfigurationPropertyKeys.AS_PUBLIC_KEY_PATH_CONF_KEY, asPublicKeyPath);
-		properties.put(ConfigurationPropertyKeys.SHIP_PRIVATE_KEY_PATH_CONF_KEY, asPrivateKeyPath);
+		properties.put(ConfigurationPropertyKeys.SHIB_PRIVATE_KEY_PATH_CONF_KEY, asPrivateKeyPath);
 		PropertiesHolder.setProperties(properties);		
 
 		// exercise

@@ -61,7 +61,7 @@ public class PropertiesHolder {
 	}
 	
 	public static String getShibPrivateKey() {
-		return properties.getProperty(ConfigurationPropertyKeys.SHIP_PRIVATE_KEY_PATH_CONF_KEY);
+		return properties.getProperty(ConfigurationPropertyKeys.SHIB_PRIVATE_KEY_PATH_CONF_KEY);
 	}
 	
 	public static String getShibIp() {
