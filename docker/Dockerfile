@@ -1,8 +1,8 @@
-# This Dockerfile belongs to the fogbow/apache-shibboleth-server
-# It is following RNP tutorial
+# This Dockerfile generates image fogbow/apache-shibboleth-server
+# It follows RNP tutorial for Shibboleth-enabled HTTP server
 ## https://wiki.rnp.br/pages/viewpage.action?pageId=69969868
 
-# In the RNP tutorial the Ubuntu 14:04 is required because da dependency 'libapache2-mod-php5'
+# Ubuntu 14.04 is required because da dependency 'libapache2-mod-php5'
 FROM ubuntu:14.04
 
 RUN \
@@ -48,8 +48,6 @@ WORKDIR /home/ubuntu/
 
 RUN git clone https://github.com/fogbow/shibboleth-authentication-application.git
 
-RUN mkdir /home/ubuntu/shared-folder
-
 WORKDIR /home/ubuntu/shibboleth-authentication-application
 
 # Generates the build number based on the commit checksum
@@ -59,5 +57,7 @@ RUN \
 RUN mvn install -DskipTests
 
 EXPOSE 80 443
+
+WORKDIR /home/ubuntu/
 
 CMD tail -f /dev/null
